@@ -27,6 +27,6 @@ public partial class EditProfile : System.Web.UI.Page
         data.CourseDescription = uxCourseDescription.Text;
 
         Session["profile_data"] = data;
-        Response.Redirect("~/Account/ViewProfile.aspx");
+        Response.Redirect("ViewProfile.aspx");
     }
 }

@@ -16,10 +16,6 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:SiteMapDataSource ID="uxSiteMapDataSource" StartingNodeUrl="~/Default.aspx" ShowStartingNode="false" runat="server" />
-        <asp:Menu DataSourceID="uxSiteMapDataSource" BorderColor="Black" BackColor="White" runat="server" /><br /><br />
-        <asp:SiteMapPath PathSeparator=" | " runat="server" />
-
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
     </div>
