@@ -1,0 +1,28 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" Inherits="MasterPage" Codebehind="MasterPage.master.cs" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="StyleSheet.css" type="text/css" runat="server" />
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <asp:ContentPlaceHolder ID="Stylesheets" runat="server">
+        <link rel="stylesheet" href="StyleSheet.css" type="text/css" runat="server" />
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:SiteMapDataSource ID="uxSiteMapDataSource" StartingNodeUrl="~/Default.aspx" ShowStartingNode="false" runat="server" />
+        <asp:Menu DataSourceID="uxSiteMapDataSource" BorderColor="Black" BackColor="White" runat="server" /><br /><br />
+        <asp:SiteMapPath PathSeparator=" | " runat="server" />
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>
