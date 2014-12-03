@@ -150,7 +150,7 @@
       <DependentUpon>MasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProfilePersistance.cs" />
+    <Compile Include="Old_App_Code\ProfilePersistance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

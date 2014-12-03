@@ -4,6 +4,10 @@
         <siteMapNode url="About.aspx" title="About"  description="" />
         <siteMapNode url="Forum.aspx" title="Forum"  description="" />
         <siteMapNode url="Tests.aspx" title="Tests" description="" />
+
+      <siteMapNode url="/." title="Admin" description="">
+        <siteMapNode url="Admin/ManageUsers.aspx" title="Manage Users" description="" />
+      </siteMapNode>
       
       <siteMapNode url="Account/Account.aspx" title="Account" description="">
         <siteMapNode url="Account/ViewProfile.aspx" title="View Profile" description="" />

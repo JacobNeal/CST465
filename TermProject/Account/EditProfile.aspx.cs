@@ -15,6 +15,7 @@ public partial class EditProfile : System.Web.UI.Page
     protected void uxSubmit_Click(object sender, EventArgs e)
     {
         ProfileData data = new ProfileData();
+        ProfilePersistance pp = new ProfilePersistance();
 
         data.Name = uxName.Text;
         data.EmailAddress = uxEmailAddress.Text;
@@ -26,7 +27,7 @@ public partial class EditProfile : System.Web.UI.Page
         data.CourseNumber = uxCourseNumber.Text;
         data.CourseDescription = uxCourseDescription.Text;
 
-        Session["profile_data"] = data;
+        pp.SaveProfile(data);
         Response.Redirect("~/Account/ViewProfile.aspx");
     }
 }

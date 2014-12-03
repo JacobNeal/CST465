@@ -12,7 +12,14 @@ namespace TermProject.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            foreach (MembershipUser user in Membership.GetAllUsers())
+            {
+                uxUsers.Items.Add(new ListItem(user.UserName));
+            }
+            foreach (string role in Roles.GetAllRoles())
+            {
+                uxRoles.Items.Add(new ListItem(role));
+            }
         }
 
         protected void uxCreateRole_Click(object sender, EventArgs e)
