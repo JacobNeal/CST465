@@ -16,12 +16,29 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:SiteMapDataSource ID="uxSiteMapDataSource" StartingNodeUrl="~/Default.aspx" ShowStartingNode="false" runat="server" />
-        <asp:Menu DataSourceID="uxSiteMapDataSource" BorderColor="Black" BackColor="White" runat="server" /><br /><br />
-        <asp:SiteMapPath PathSeparator=" | " runat="server" />
+        <asp:ScriptManager ID="uxScriptManager" runat="server">
+            <Scripts>
+                <asp:ScriptReference Path="~/JS/jquery-2.1.1.min.js" />
+                <asp:ScriptReference Path="~/JS/DefaultScript.js" />
+            </Scripts>
+        </asp:ScriptManager>
 
-        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
+        <asp:SiteMapDataSource ID="uxSiteMapDataSource" StartingNodeUrl="~/Default.aspx" ShowStartingNode="false" runat="server" />
+        <div style="float: left;">
+            <asp:Menu DataSourceID="uxSiteMapDataSource" BorderWidth="1" BorderColor="Black" BackColor="White" Orientation="Horizontal" runat="server">
+                <LevelMenuItemStyles>
+                    <asp:MenuItemStyle CssClass="main_menu" />
+                    <asp:MenuItemStyle CssClass="level_menu" />
+                </LevelMenuItemStyles>
+            </asp:Menu>
+        </div>
+
+        <div style="float: left;">
+            <asp:SiteMapPath PathSeparator=" | " runat="server" />
+
+            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </div>
     </form>
 </body>
