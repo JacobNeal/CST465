@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Announcements</title>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script type="text/javascript" src="JS/jquery-2.1.1.min.js"></script>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Stylesheets" runat="server">
@@ -14,68 +14,59 @@
 
     <asp:SqlDataSource ID="SqlDataSource1" ConnectionString="<%$ ConnectionStrings:SqlSecurityDB%>" SelectCommand="SELECT * FROM JacobNeal.Announcements JOIN dbo.aspnet_Users ON JacobNeal.Announcements.UserID = dbo.aspnet_Users.UserID;" runat="server" />
 
-    <asp:LoginView ID="uxLoginView" runat="server">
-        <AnonymousTemplate>
-            <asp:Login MembershipProvider="SqlMembership" CreateUserText="Register" CreateUserUrl="Announcements.aspx" runat="server" />
-        </AnonymousTemplate>
+    <asp:Label ID="uxRevealNewAnnouncement" Text="(+) Add New Announcement" runat="server" />
+    <br />
+    <br />
 
-        <LoggedInTemplate>
-            <asp:Label ID="uxAddNewAnnouncement" Text="Add New Announcement" runat="server" />
+    <asp:UpdatePanel ID="uxUpdatePanel" UpdateMode="Conditional" runat="server">
+        <ContentTemplate>
+            <div id="AddNewAnnouncement">
+                <asp:LoginView ID="uxLoginView" runat="server">
+                    <AnonymousTemplate>
+                        <asp:Login MembershipProvider="SqlMembership" CreateUserText="Register" CreateUserUrl="Announcements.aspx" runat="server" />
+                    </AnonymousTemplate>
 
-            <asp:Button ID="uxLogout" Text="Logout" OnClick="uxLogout_Click" runat="server" />
-            <br />
-            <br />
+                    <LoggedInTemplate>
+                        <asp:Button ID="uxLogout" Text="Logout" OnClick="uxLogout_Click" runat="server" />
+                        <br />
+                        <br />
 
-            <asp:Label ID="lblTitle" AssociatedControlID="uxTitle" Text="Announcement: " runat="server" />
-            <br />
-            <asp:TextBox ID="uxTitle" runat="server" />
-            <br />
-            <br />
+                        <asp:Label ID="lblTitle" AssociatedControlID="uxTitle" Text="Announcement: " runat="server" />
+                        <br />
+                        <asp:TextBox ID="uxTitle" runat="server" />
+                        <br />
+                        <br />
 
-            <asp:Label ID="lblBody" AssociatedControlID="uxBody" Text="Body: " runat="server" />
-            <br />
-            <asp:TextBox ID="uxBody" runat="server" />
-            <br />
-            <br />
+                        <asp:Label ID="lblBody" AssociatedControlID="uxBody" Text="Body: " runat="server" />
+                        <br />
+                        <asp:TextBox ID="uxBody" runat="server" />
+                        <br />
+                        <br />
 
-            <asp:Button ID="uxSubmit" Text="Submit" OnClick="uxSubmit_Click" runat="server" />
-            <br />
-            <br />
-        </LoggedInTemplate>
-    </asp:LoginView>
+                        <asp:Button ID="uxSubmit" Text="Submit" OnClick="uxSubmit_Click" runat="server" />
+                        <br />
+                        <br />
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </div>
 
-    <asp:Repeater ID="uxRepeater" DataSourceID="SqlDataSource1" runat="server">
-        <ItemTemplate>
-            <asp:HyperLink ID="uxTitle" Text='<%# Eval("Title") %>' NavigateUrl='<%# "~/Announcement.aspx?AnnID=" + Eval("Ann_ID") %>' runat="server" />
-            <br />
-            <br />
-        </ItemTemplate>
-    </asp:Repeater>
+            <asp:Repeater ID="uxRepeater" DataSourceID="SqlDataSource1" runat="server">
+                <ItemTemplate>
+                    <asp:HyperLink ID="uxTitle" Text='<%# Eval("Title") %>' CssClass="Announcements" NavigateUrl='<%# "~/Announcement.aspx?AnnID=" + Eval("Ann_ID") %>' runat="server" />
+                    <br />
+                    <br />
+                </ItemTemplate>
+            </asp:Repeater>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#<%= uxLoginView.FindControl("uxTitle").ClientID %>').hide();
-            $('#<%= uxLoginView.FindControl("uxBody").ClientID %>').hide();
-            $('#<%= uxLoginView.FindControl("uxSubmit").ClientID %>').hide();
-            $('#<%= uxLoginView.FindControl("lblTitle").ClientID %>').hide();
-            $('#<%= uxLoginView.FindControl("lblBody").ClientID %>').hide();
-        });
+            $('#AddNewAnnouncement').hide();
 
-        $('#<%= uxLoginView.FindControl("uxAddNewAnnouncement").ClientID %>').click(function () {
-            $('#<%= uxLoginView.FindControl("uxAddNewAnnouncement").ClientID %>').hide('slow');
-            $('#<%= uxLoginView.FindControl("uxTitle").ClientID %>').show('slow');
-            $('#<%= uxLoginView.FindControl("uxBody").ClientID %>').show('slow');
-            $('#<%= uxLoginView.FindControl("uxSubmit").ClientID %>').show('slow');
-            $('#<%= uxLoginView.FindControl("lblTitle").ClientID %>').show('slow');
-            $('#<%= uxLoginView.FindControl("lblBody").ClientID %>').show('slow');
-
-            $('#<%= uxLoginView.FindControl("uxSubmit").ClientID %>').click(function () {
-                $('#<%= uxLoginView.FindControl("uxAddNewAnnouncement").ClientID %>').show('slow');
-                $('#<%= uxLoginView.FindControl("uxTitle").ClientID %>').hide('slow');
-                $('#<%= uxLoginView.FindControl("uxBody").ClientID %>').hide('slow');
-                $('#<%= uxLoginView.FindControl("uxSubmit").ClientID %>').hide('slow');
-                $('#<%= uxLoginView.FindControl("lblTitle").ClientID %>').hide('slow');
-                $('#<%= uxLoginView.FindControl("lblBody").ClientID %>').hide('slow');
+            $('#<%= uxRevealNewAnnouncement.ClientID %>').click(function () {
+                $('#<%= uxRevealNewAnnouncement.ClientID %>').hide();
+                $('#AddNewAnnouncement').show('slow');
             });
         });
     </script>

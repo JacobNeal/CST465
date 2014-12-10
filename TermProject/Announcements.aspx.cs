@@ -21,11 +21,15 @@ namespace TermProject
             string title = ((TextBox)uxLoginView.FindControl("uxTitle")).Text;
             string body = ((TextBox)uxLoginView.FindControl("uxBody")).Text;
 
-            string queryString = "INSERT INTO JacobNeal.Announcements (UserID, Title, Body) VALUES ('" + Membership.GetUser().ProviderUserKey.ToString() + "', '" + title + "', '" + body + "');";
+            string queryString = "INSERT INTO JacobNeal.Announcements (UserID, Title, Body) VALUES (@UserID, @Title, @Body);";
+            
             using (SqlConnection connection = new SqlConnection("Server=aura.students.cset.oit.edu;database=JacobNeal;user id=JacobNeal; password=jacob;"))
             {
                 SqlCommand command = new SqlCommand(queryString, connection);
                 command.CommandType = System.Data.CommandType.Text;
+                command.Parameters.AddWithValue("@UserID", Membership.GetUser().ProviderUserKey.ToString());
+                command.Parameters.AddWithValue("@Title", title);
+                command.Parameters.AddWithValue("@Body", body);
                 connection.Open();
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -42,7 +46,7 @@ namespace TermProject
                 }
             }
 
-            Response.Redirect("~/Announcements.aspx");
+            uxRepeater.DataBind();
         }
 
         protected void uxLogout_Click(object sender, EventArgs e)

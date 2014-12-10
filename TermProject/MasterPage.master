@@ -24,7 +24,7 @@
         </asp:ScriptManager>
 
         <asp:SiteMapDataSource ID="uxSiteMapDataSource" StartingNodeUrl="~/Default.aspx" ShowStartingNode="false" runat="server" />
-        <div style="float: left;">
+        <div>
             <asp:Menu DataSourceID="uxSiteMapDataSource" BorderWidth="1" BorderColor="Black" BackColor="White" Orientation="Horizontal" runat="server">
                 <LevelMenuItemStyles>
                     <asp:MenuItemStyle CssClass="main_menu" />
@@ -32,8 +32,9 @@
                 </LevelMenuItemStyles>
             </asp:Menu>
         </div>
+        <br />
 
-        <div style="float: left;">
+        <div>
             <asp:SiteMapPath PathSeparator=" | " runat="server" />
 
             <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
